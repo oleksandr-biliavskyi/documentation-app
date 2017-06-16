@@ -29,4 +29,16 @@ export class SearchComboComponent {
     return this.entitiesService.search(searchTerm);
   }
 
+
+  getDisplayValue(result) {
+    if (result.attribute) {
+      return result.entity + '.' + result.attribute;
+    } else if (result.relationship) {
+      return result.entity + '.' + result.relationship;
+    } else {
+      return result.entity;
+    }
+
+  }
+
 }

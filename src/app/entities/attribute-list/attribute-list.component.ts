@@ -1,6 +1,6 @@
-import { Component, OnInit, OnDestroy, AfterViewChecked } from '@angular/core';
+import { Component, OnInit, OnDestroy} from '@angular/core';
 import { EntitiesService } from '../../entities/shared/entities.service';
-import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { IAttribute } from '../shared/model/entity.model';
 
 @Component({
@@ -8,7 +8,7 @@ import { IAttribute } from '../shared/model/entity.model';
   templateUrl: './attribute-list.component.html',
   styleUrls: ['./attribute-list.component.css']
 })
-export class AttributeListComponent implements OnInit, OnDestroy, AfterViewChecked {
+export class AttributeListComponent implements OnInit, OnDestroy {
 
   attributes: IAttribute[];
 
@@ -19,9 +19,7 @@ export class AttributeListComponent implements OnInit, OnDestroy, AfterViewCheck
   private entityName: string;
   private type: string;
 
-  constructor(private entitiesService: EntitiesService, private route: ActivatedRoute, private router: Router) {
-
-  }
+  constructor(private entitiesService: EntitiesService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.entitiesService.isDataReady.subscribe((
@@ -44,33 +42,24 @@ export class AttributeListComponent implements OnInit, OnDestroy, AfterViewCheck
   }
 
   assignAttributes() {
+    const tree = this.router.parseUrl(this.router.url);
+
     if (this.entityName && this.type) {
       const entities = this.entitiesService.getEntities();
       this.attributes = entities.find(entity => entity.name === this.entityName)[this.type];
+    }
 
+    if (tree.fragment) {
+      setTimeout(() => {
+        const element = document.querySelector('#' + tree.fragment);
+        if (element) { element.scrollIntoView(element); }
+      }, 100);
     }
   }
-
 
   ngOnDestroy() {
     this.sub1.unsubscribe();
     this.sub2.unsubscribe();
-
-  }
-
-  ngAfterViewChecked() {
-
-    /*this.sub2 = this.route.fragment.subscribe(fragment => {
-        if (fragment === this.fragment) {
-            return;
-        }
-
-        const element = document.querySelector('#' + fragment);
-        if (element) {
-            element.scrollIntoView(element);
-            this.fragment = fragment;
-        }
-    });*/
 
   }
 }
