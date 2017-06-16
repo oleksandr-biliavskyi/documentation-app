@@ -1,0 +1,5 @@
+<md-toolbar color="primary">
+    <button md-button [routerLink]="['/']"><md-icon>home</md-icon> Carerix Model Documentation</button>
+    <span class="spacer"></span>
+    <app-search-combo *ngIf="dataReady"></app-search-combo>
+</md-toolbar>

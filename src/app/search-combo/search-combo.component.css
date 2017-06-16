@@ -1,0 +1,23 @@
+/deep/ label.mat-input-placeholder {
+    color: rgba(255,255,255,.87) !important;
+}
+
+/deep/ label.mat-input-placeholder:not(.mat-empty) {
+    visibility: hidden;
+}
+
+/deep/ md-input-container > div.mat-input-wrapper > div.mat-input-table > div.mat-input-infix > input {
+    color: rgba(255,255,255,.87) !important;
+}
+
+/deep/ md-input-container.mat-focused > div.mat-input-wrapper > div.mat-input-table > div.mat-input-infix > input {
+    color: white !important;
+}
+
+/deep/ md-input-container:not(.mat-focused) > div.mat-input-wrapper > div.mat-input-underline {
+    background-color: rgba(255,255,255,.87) !important;
+}
+
+/deep/ md-input-container.mat-focused > div.mat-input-wrapper > div.mat-input-underline > span.mat-input-ripple {
+    background-color: white !important;
+}

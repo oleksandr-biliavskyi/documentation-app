@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { EntitiesService } from './entities/shared/entities.service'
 
 @Component({
   selector: 'app-root',
@@ -6,5 +7,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'app works!';
+  private dataReady:boolean = false;
+
+  constructor(private entitiesService: EntitiesService) {
+
+  }
+
+  ngOnInit() {
+    this.entitiesService.fetchEntities().subscribe(entities => {this.dataReady = true;});
+  }
+
+  showProgress():Boolean {
+    return !this.dataReady;
+  }
+
 }

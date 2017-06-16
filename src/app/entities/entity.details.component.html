@@ -1,0 +1,12 @@
+<div *ngIf="dataReady" style="width: 98%;">
+  <md-card>
+    <md-card-title>{{entity.name}}</md-card-title>
+    <md-card-content>
+      <nav md-tab-nav-bar>
+        <a md-tab-link [routerLink]="['attributes']" [active]="isAttributesTabActive"> Attributes</a>
+        <a md-tab-link [routerLink]="['relationships']" [active]="!isAttributesTabActive"> Relationships</a>
+      </nav>
+    </md-card-content>
+  </md-card>
+  <router-outlet></router-outlet>
+</div>

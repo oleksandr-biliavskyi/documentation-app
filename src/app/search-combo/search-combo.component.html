@@ -1,0 +1,18 @@
+<md-icon>search</md-icon>
+<md-input-container>
+  <input mdInput style="width:400px;" placeholder="Search..." [mdAutocomplete]="auto" [formControl]="searchControl">
+</md-input-container>
+
+<md-autocomplete #auto="mdAutocomplete">
+  <md-option *ngFor="let result of searhResults | async" [value]="">
+    <div *ngIf="result.attribute">
+      <a [routerLink]="['/', result.entity, 'attributes']" fragment="{{result.attribute}}">{{ result.entity}}.{{ result.attribute }}</a>
+    </div>
+    <div *ngIf="result.relationship">
+      <a [routerLink]="['/', result.entity, 'relationships']" fragment="{{result.relationship}}">{{ result.entity}}.{{ result.relationship }}</a>
+    </div>
+    <div *ngIf="!result.attribute && !result.relationship">
+      <a [routerLink]="['/', result.entity]">{{ result.entity}}</a>
+    </div>
+  </md-option>
+</md-autocomplete>

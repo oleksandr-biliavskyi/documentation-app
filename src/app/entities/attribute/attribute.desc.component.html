@@ -1,0 +1,5 @@
+<div class="card card-block" style="margin-top: 15px;">
+    <h5 class="card-title" id="{{attributeDesc.name}}">{{attributeDesc.name}}</h5>
+    <div class="attribute-type">{{attributeDesc.className}}</div>
+    <div *ngIf="hasLabel()" class="attribute-label"><span>Field label: </span>{{attributeDesc.label}}</div>
+</div>

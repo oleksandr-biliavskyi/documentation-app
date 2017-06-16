@@ -1,0 +1,8 @@
+
+<nav class="hidden-xs-down sidebar">
+    <ul class="nav nav-pills flex-column">
+        <li class="nav-item" *ngFor="let entity of entities">
+            <a class="nav-link" href="#" [routerLink]="['/', entity]">{{entity}}</a>
+        </li>
+    </ul>
+</nav>
