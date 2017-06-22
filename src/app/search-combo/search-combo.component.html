@@ -4,15 +4,7 @@
 </md-input-container>
 
 <md-autocomplete #auto="mdAutocomplete">
-  <md-option *ngFor="let result of searhResults | async" [value]="getDisplayValue(result)">
-    <div *ngIf="result.attribute">
-      <a [routerLink]="['/', result.entity, 'attributes']" fragment="{{result.attribute}}">{{ getDisplayValue(result) }}</a>
-    </div>
-    <div *ngIf="result.relationship">
-      <a [routerLink]="['/', result.entity, 'relationships']" fragment="{{result.relationship}}">{{ getDisplayValue(result) }}</a>
-    </div>
-    <div *ngIf="!result.attribute && !result.relationship">
-      <a [routerLink]="['/', result.entity]">{{ getDisplayValue(result) }}</a>
-    </div>
+  <md-option *ngFor="let result of searhResults | async" [value]="getDisplayValue(result)"  (onSelectionChange)="onSelectHandler($event, result)">
+    <div >{{ getDisplayValue(result) }}</div>
   </md-option>
 </md-autocomplete>

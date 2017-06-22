@@ -11,10 +11,9 @@ export class EntitiesService {
     private modelDescription: IEntity[];
     private isDataReadySource: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
     public isDataReady: Observable<boolean> = this.isDataReadySource.asObservable();
+    private url = 'http://cxdev50staffing.carerix.dev/Trunk/Carerix/cx5/cgi-bin/WebObjects/cxdev50staffing.woa/wa/ExtJS/modelDescription?pwd=Johxei7S';
 
-    constructor(private jsonp: Jsonp) {
-
-    }
+    constructor(private http: Http) {}
 
     fetchEntities(): Observable<IEntity[]> {
 
@@ -22,7 +21,7 @@ export class EntitiesService {
             return Observable.of(<IEntity[]>this.modelDescription);
         }
 
-        return this.jsonp.request('http://cxdev50staffing.carerix.dev/Trunk/Carerix/cx5/cgi-bin/WebObjects/cxdev50staffing.woa/wa/ExtJS/modelDescription?pwd=Johxei7S&callback=JSONP_CALLBACK', { method: 'Get' })
+        return this.http.get(this.url)
             .map((response: Response) => {
                 this.modelDescription = response.json().rows;
                 this.isDataReadySource.next(true);

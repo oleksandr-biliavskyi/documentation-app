@@ -54,6 +54,11 @@ export class AttributeListComponent implements OnInit, OnDestroy {
         const element = document.querySelector('#' + tree.fragment);
         if (element) { element.scrollIntoView(element); }
       }, 100);
+    } else {
+      setTimeout(() => {
+        const element = document.querySelector('#toplink');
+        if (element) { element.scrollIntoView(element); }
+      }, 100);
     }
   }
 
