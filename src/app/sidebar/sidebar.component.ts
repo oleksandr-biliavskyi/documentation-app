@@ -18,9 +18,8 @@ export class SideBarComponent {
     }
 
     isItemActive(entityName: string) {
-        const tree = this.router.parseUrl(this.router.url);
-        const routerEntityName = tree.root.children.primary.segments[0].path;
-        return entityName === routerEntityName;
+
+        return false;
     }
 
     ngOnInit() {
